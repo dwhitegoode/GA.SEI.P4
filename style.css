@@ -1,0 +1,32 @@
+html, body {
+  margin: 0; 
+  height: 100%; 
+  overflow: hidden}
+
+.wrapper {
+  overflow: hidden;
+}
+
+.background {
+  background: url('images/flappybackground.png') repeat-x; 
+  height: 1000px;
+  width: 5076px;
+  background-size:90rem;
+  animation: slide 60s linear infinite;
+}
+
+@keyframes slide{
+  0%{
+    transform: translate3d(0, 0, 0);
+  }
+  100%{
+    transform: translate3d(-1692px, 0, 0);
+  }
+}
+
+/*
+h2{
+  position: absolute;
+  top: auto 0;
+  z-index: 9;
+}
