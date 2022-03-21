@@ -2,7 +2,40 @@
 html, body {
   margin: 0; 
   height: 100%; 
-  overflow: hidden
+  overflow: hidden;
+  font-family: 'Inconsolata', monospace;
+  
+}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Quicksand:wght@300;600&display=swap');
+body{
+  
+}
+.score{
+  background-color: black;
+  color: white;
+  width: 110px;
+  height: 55px;
+  text-align: center;
+  z-index: +2;
+  position: absolute;
+}
+.restart{
+  font-family: 'Quicksand', sans-serif;
+  font-size: x-large;
+  left: 0;
+  top: 55px;
+  z-index: +2;
+  position: absolute;
+  text-align: center;
+  color: white;
+  background-color: #00cc00;
+}
+.count {
+  font-family: 'Quicksand', sans-serif;
+  font-size: x-large;
+  left: 0;
+  z-index: +2;
+  position: absolute;
 }
 
 /*
@@ -42,7 +75,25 @@ position: absolute;
   /* bringing this div forward to hide the base of pipes */
   z-index: +1;
 }
+.active {
+  background: url(images/yellowbird.png);
+}
 
+.activeX{
+  background: url(images/greenbird.png);
+  background-repeat: no-repeat;
+
+}
+
+.activeY{
+  background: url(images/redbird.png);
+  background-repeat: no-repeat;
+}
+
+.explode {
+  background-image: url(images/explode.png);
+  background-repeat: no-repeat;
+}
 .flappy{
   background: url(images/yellowbird.png);
   width: 60px;
@@ -60,6 +111,14 @@ position: absolute;
   z-index: +1;
 }
 
+.left{
+  width: 200px;
+  height: 730;
+  position: absolute;
+  background-color: white;
+  z-index: +2;
+}
+
 .topPipe {
   background: linear-gradient(to left, #ccffcc 17%, #00cc00 74%);
   width: 60px;
@@ -73,9 +132,15 @@ position: absolute;
   height: 1000px;
   width: 5076px;
   background-size:90rem;
-  animation: slide 17s linear infinite;
+ 
 }
 
+.unpaused{
+  animation: slide 17s linear infinite;
+}
+.paused{
+  
+}
 @keyframes slide{
   0%{
     transform: translate3d(0, 0, 0);
@@ -84,5 +149,23 @@ position: absolute;
     transform: translate3d(-1692px, 0, 0);
   }
 }
+
+.button {
+  padding: 1rem 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 1.25rem;
+  animation: 2s linear infinite blink;
+}
+
+.homepage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-image: url('./images/redbird.png');
+  background-repeat:no-repeat 
+}
+
 
 

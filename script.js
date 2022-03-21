@@ -1,13 +1,40 @@
 /*flappy bird project 4 */
-
+let backgroundDiv = document.createElement('div')
+let helperNode = document.querySelector('.sky')
+let parent = helperNode.parentNode
+let wrap = document.parentElement
+let flappin = document.createElement('div')
+flappin.classList.add('flappy')
+helperNode.appendChild(flappin)
+backgroundDiv.classList.add('background')
+backgroundDiv.classList.add('unpaused')
+parent.appendChild(backgroundDiv)
 const flappy = document.querySelector('.flappy')
 const view = document.querySelector('.wrapper')
 const floor = document.querySelector('.floor')
+/*
+ let createdDiv = document.createElement('div')
+    let newClass = createdDiv.classList.add('duck')
+    document.body.appendChild(createdDiv)
+
+    let flapToggle = () => {
+      createdDiv.classList.toggle('flap')
+    }
+
+
+*/
+let redoButton = document.querySelector('.restart')
+redoButton.addEventListener('click', e => {
+  console.log("i'm clicked!")
+  window.open('homepage.html', '_self')
+})
 
 let fLeft = 150
 let fbot = 500
 let gravity = 2
 let gameEnd = false
+let currentScore = 0;
+let count = 0;
 
 
 game = () => {
@@ -44,6 +71,7 @@ document.addEventListener('keyup', userCommand)
 
 pipeBuilder = () => {
   let pipeOrigin = 1000
+
   //let randomHeight = Math.random() * 100
   let pipeSeparation = Math.floor(Math.random() * (550 - 400) + 400)
 
@@ -53,6 +81,8 @@ pipeBuilder = () => {
 
 
   if (!gameEnd) {
+    count++
+    document.querySelector('.count').innerHTML = `SCORE: ${count}`
     botPipe.classList.add('botPipe')
     topPipe.classList.add('topPipe')
     console.log(`pipe distance:${pipeSeparation}`)
@@ -60,6 +90,7 @@ pipeBuilder = () => {
 
   view.appendChild(botPipe)
   view.appendChild(topPipe)
+
 
   /*accessing css styling thorugh js */
   botPipe.style.left = `${pipeOrigin}px`
@@ -77,16 +108,76 @@ pipeBuilder = () => {
       view.removeChild(botPipe)
       view.removeChild(topPipe)
     }
-    if (pipeOrigin > 150 && pipeOrigin) { }
 
+    let birdy = document.querySelector('.flappy')
+    let pipe = document.querySelector('.botPipe')
+    let tpipe = document.querySelector('.topPipe')
+
+    let toggle = () => {
+      backgroundDiv.classList.remove('unpaused')
+
+    }
+    birdDown = (bird, bottomPipe) => {
+      let obj1 = bird.getBoundingClientRect()
+      let obj2 = bottomPipe.getBoundingClientRect()
+      let obj3 = topPipe.getBoundingClientRect()
+
+      if ((obj1.left < obj2.left + obj2.width && obj1.left + obj1.width > obj2.left &&
+        obj1.top < obj2.top + obj2.height && obj1.top + obj1.height > obj2.top) || fbot === 200) {
+        theEnd()
+        clearInterval(pipeInterval)
+        toggle()
+
+      }
+      else {
+      }
+    }
+    birdDown(birdy, pipe)
+
+    birdDown2 = (bird, topPipe) => {
+      let obj1 = bird.getBoundingClientRect()
+      //let obj2 = bottomPipe.getBoundingClientRect()
+      let obj3 = topPipe.getBoundingClientRect()
+
+      if ((obj1.left < obj3.left + obj3.width && obj1.left + obj1.width > obj3.left &&
+        obj1.top < obj3.top + obj3.height && obj1.top + obj1.height > obj3.top) || fbot === 200) {
+        theEnd()
+        clearInterval(pipeInterval)
+        toggle()
+        flap.classList.add('exlposion')
+      }
+      else {
+      }
+    }
+    birdDown2(birdy, tpipe)
   }
 
-  /*creating pipes a constanct click */
+  // if (pipeOrigin > 130 && pipeOrigin < 210 && fLeft === 150 || fbot === 200 &&
+  //   fbot < pipeOrigin) {
+  //   theEnd()
+  //   clearInterval(pipeInterval)
+  // }
+
+
+
+  /*moving pipes at a constanct click */
   let pipeInterval = setInterval(pipeScroller, 20)
 
   if (!gameEnd) {
     setTimeout(pipeBuilder, 3000)
+    count++
+
+    // document.querySelector('#score').innerHTML = count
   }
 }
 
+
 pipeBuilder()
+
+theEnd = () => {
+  clearInterval(currentGame)
+  console.log('the end')
+  gameEnd = true
+  /* no more use for event listener */
+  document.removeEventListener('keyup', userCommand)
+}
