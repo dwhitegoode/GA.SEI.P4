@@ -1,18 +1,79 @@
+/*prevents scrolling */
 html, body {
   margin: 0; 
   height: 100%; 
-  overflow: hidden}
-
-.wrapper {
-  overflow: hidden;
+  overflow: hidden
 }
 
+/*
+.flappy {
+  position: absolute;
+  background-image: url('./images/greenbirdPixcleaner.png');
+  background-size: 100px 100px;
+  top: 300px;
+  height: 100px;
+  width: 100px;
+  z-index: 9;
+}
+*/
+
+/* background of game scrolling */
+.wrapper {
+  overflow: hidden;
+  width: 1000px;
+  height: 730px;
+  position: absolute;
+  left: 200px;
+  
+}
+
+/*superficial but functional*/
+.sky{
+width: 1000px;
+height: 850px;
+position: absolute;
+}
+
+.floor{
+  width: 1000px;
+  height: 150px;
+  position: absolute;
+  top: 650px;
+  /* bringing this div forward to hide the base of pipes */
+  z-index: +1;
+}
+
+.flappy{
+  background: url(images/yellowbird.png);
+  width: 60px;
+  height: 55px;
+  background-size: 60px;
+  position: absolute;
+  z-index: +1;
+}
+
+.botPipe {
+  background: linear-gradient(to right, #ccffcc 17%, #00cc00 74%);
+  width: 60px;
+  height: 300px;
+  position: absolute;
+  z-index: +1;
+}
+
+.topPipe {
+  background: linear-gradient(to left, #ccffcc 17%, #00cc00 74%);
+  width: 60px;
+  height: 300px;
+  transform: rotate(180deg);
+  position: absolute;
+  z-index: +1;
+}
 .background {
   background: url('images/flappybackground.png') repeat-x; 
   height: 1000px;
   width: 5076px;
   background-size:90rem;
-  animation: slide 60s linear infinite;
+  animation: slide 17s linear infinite;
 }
 
 @keyframes slide{
@@ -24,9 +85,4 @@ html, body {
   }
 }
 
-/*
-h2{
-  position: absolute;
-  top: auto 0;
-  z-index: 9;
-}
+
