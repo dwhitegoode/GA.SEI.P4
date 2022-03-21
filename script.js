@@ -5,6 +5,7 @@ let parent = helperNode.parentNode
 let wrap = document.parentElement
 let flappin = document.createElement('div')
 flappin.classList.add('flappy')
+flappin.classList.add('active')
 helperNode.appendChild(flappin)
 backgroundDiv.classList.add('background')
 backgroundDiv.classList.add('unpaused')
@@ -54,6 +55,15 @@ let currentGame = setInterval(game, 20)
 let userCommand = e => {
   if (e.keyCode === 38) {
     flap()
+    if (count > 9) {
+      flappin.classList.remove('active')
+      flappin.classList.add('activeX')
+    }
+    if (count > 19) {
+      flappin.classList.remove('activeX')
+      flappin.classList.add('activeY')
+    }
+
   }
 }
 
@@ -118,12 +128,12 @@ pipeBuilder = () => {
 
     }
     birdDown = (bird, bottomPipe) => {
-      let obj1 = bird.getBoundingClientRect()
-      let obj2 = bottomPipe.getBoundingClientRect()
-      let obj3 = topPipe.getBoundingClientRect()
+      let birdObj = bird.getBoundingClientRect()
+      let botPipeObj = bottomPipe.getBoundingClientRect()
+      let topPipeObj = topPipe.getBoundingClientRect()
 
-      if ((obj1.left < obj2.left + obj2.width && obj1.left + obj1.width > obj2.left &&
-        obj1.top < obj2.top + obj2.height && obj1.top + obj1.height > obj2.top) || fbot === 200) {
+      if ((birdObj.left < botPipeObj.left + botPipeObj.width && birdObj.left + birdObj.width > botPipeObj.left &&
+        birdObj.top < botPipeObj.top + botPipeObj.height && birdObj.top + birdObj.height > botPipeObj.top) || fbot === 200) {
         theEnd()
         clearInterval(pipeInterval)
         toggle()
@@ -135,16 +145,16 @@ pipeBuilder = () => {
     birdDown(birdy, pipe)
 
     birdDown2 = (bird, topPipe) => {
-      let obj1 = bird.getBoundingClientRect()
-      //let obj2 = bottomPipe.getBoundingClientRect()
-      let obj3 = topPipe.getBoundingClientRect()
+      let birdObj = bird.getBoundingClientRect()
+      //let botPipeObj = bottomPipe.getBoundingClientRect()
+      let topPipeObj = topPipe.getBoundingClientRect()
 
-      if ((obj1.left < obj3.left + obj3.width && obj1.left + obj1.width > obj3.left &&
-        obj1.top < obj3.top + obj3.height && obj1.top + obj1.height > obj3.top) || fbot === 200) {
+      if ((birdObj.left < topPipeObj.left + topPipeObj.width && birdObj.left + birdObj.width > topPipeObj.left &&
+        birdObj.top < topPipeObj.top + topPipeObj.height && birdObj.top + birdObj.height > topPipeObj.top) || fbot === 200) {
         theEnd()
         clearInterval(pipeInterval)
         toggle()
-        flap.classList.add('exlposion')
+        //flap.classList.add('exlposion')
       }
       else {
       }

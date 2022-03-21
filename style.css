@@ -95,7 +95,7 @@ position: absolute;
   background-repeat: no-repeat;
 }
 .flappy{
-  background: url(images/yellowbird.png);
+  /*background: url(images/yellowbird.png);*/
   width: 60px;
   height: 55px;
   background-size: 60px;
